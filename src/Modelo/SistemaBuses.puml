@@ -1,0 +1,43 @@
+@startuml
+
+class Ruta {
+  - String origen
+  - String destino
+  - double precio
+  + getPrecio() : double
+}
+
+class Servicio {
+  - String[] servicios
+  + mostrarServicios() : void
+}
+
+class Pasajero {
+  - String nombre
+  - String cedula
+  + mostrarDatos() : void
+}
+
+abstract class Ticket {
+  - Ruta ruta
+  - Pasajero pasajero
+  - double costoBase
+  - boolean maletaAdicional
+  + calcularCosto() : double
+  + mostrarTicket() : void
+}
+
+class Normal extends Ticket {
+  - String tipoAsiento
+  + calcularCosto() : double
+}
+
+class VIP extends Ticket {
+  - Servicio serviciosExtras
+  + calcularCosto() : double
+}
+
+Ticket <|-- Normal
+Ticket <|-- VIP
+
+@enduml
